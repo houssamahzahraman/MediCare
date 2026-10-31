@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MediCare - Modern Clinical Healthcare</title>
+<!-- Google Fonts: Inter -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-surface": "#121c2a",
+            "on-background": "#121c2a",
+            "on-secondary-fixed-variant": "#004b73",
+            "surface-container-low": "#eff4ff",
+            "tertiary-fixed": "#85f8c4",
+            "secondary-fixed-dim": "#93ccff",
+            "on-surface-variant": "#3e4947",
+            "surface-container-highest": "#d9e3f6",
+            "on-error-container": "#93000a",
+            "tertiary-fixed-dim": "#68dba9",
+            "on-primary": "#ffffff",
+            "surface-container-lowest": "#ffffff",
+            "inverse-surface": "#27313f",
+            "outline-variant": "#bdc9c6",
+            "on-tertiary-fixed": "#002114",
+            "on-tertiary": "#ffffff",
+            "secondary-container": "#5bb8fe",
+            "on-primary-container": "#a3faef",
+            "surface-variant": "#d9e3f6",
+            "surface-container-high": "#dee9fc",
+            "inverse-on-surface": "#eaf1ff",
+            "outline": "#6e7977",
+            "surface-bright": "#f8f9ff",
+            "surface-tint": "#006a63",
+            "surface": "#f8f9ff",
+            "tertiary-container": "#007954",
+            "primary-fixed-dim": "#80d5cb",
+            "background": "#f8f9ff",
+            "surface-dim": "#d0dbed",
+            "secondary": "#006398",
+            "on-tertiary-container": "#99ffce",
+            "on-tertiary-fixed-variant": "#005137",
+            "primary-fixed": "#9cf2e8",
+            "on-secondary": "#ffffff",
+            "tertiary": "#005e40",
+            "on-error": "#ffffff",
+            "secondary-fixed": "#cce5ff",
+            "on-secondary-fixed": "#001d31",
+            "primary": "#005c55",
+            "inverse-primary": "#80d5cb",
+            "on-secondary-container": "#00476e",
+            "on-primary-fixed-variant": "#00504a",
+            "on-primary-fixed": "#00201d",
+            "error-container": "#ffdad6",
+            "primary-container": "#0f766e",
+            "error": "#ba1a1a",
+            "surface-container": "#e6eeff"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "spacing": {
+            "space-md": "1rem",
+            "margin": "2rem",
+            "space-sm": "0.5rem",
+            "space-lg": "1.5rem",
+            "margin-sm": "1rem",
+            "gutter": "1.5rem",
+            "space-xl": "2.5rem",
+            "gutter-sm": "1rem",
+            "space-xs": "0.25rem"
+          },
+          "fontFamily": {
+            "body-sm": ["Inter"],
+            "display": ["Inter"],
+            "body-md": ["Inter"],
+            "title-sm": ["Inter"],
+            "label-md": ["Inter"],
+            "headline-sm": ["Inter"],
+            "title-md": ["Inter"],
+            "headline-md": ["Inter"],
+            "body-lg": ["Inter"],
+            "data-mono": ["Inter"],
+            "headline-lg-mobile": ["Inter"],
+            "headline-lg": ["Inter"],
+            "label-sm": ["Inter"]
+          },
+          "fontSize": {
+            "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
+            "display": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "title-sm": ["14px", { "lineHeight": "20px", "fontWeight": "600" }],
+            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+            "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+            "title-md": ["16px", { "lineHeight": "24px", "fontWeight": "600" }],
+            "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "data-mono": ["13px", { "lineHeight": "18px", "letterSpacing": "-0.01em", "fontWeight": "500" }],
+            "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "headline-lg": ["30px", { "lineHeight": "38px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.03em", "fontWeight": "500" }]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20;
+      font-size: 20px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .custom-shadow-card {
+      box-shadow: 0 1px 3px 0 rgba(15, 118, 110, 0.04), 0 1px 2px -1px rgba(0, 0, 0, 0.05);
+    }
+    .custom-shadow-hover {
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .custom-shadow-hover:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px -2px rgba(15, 118, 110, 0.08), 0 3px 6px -3px rgba(0, 0, 0, 0.05);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface antialiased min-h-screen flex flex-col selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- 1. TopNavBar -->
+<header class="bg-surface-container-lowest dark:bg-inverse-surface docked full-width top-0 sticky z-50 shadow-sm">
+<div class="max-w-7xl mx-auto px-margin flex items-center justify-between h-16 w-full">
+<!-- Brand Logo Anchor -->
+<a class="flex items-center gap-space-sm text-title-md font-title-md text-primary dark:text-inverse-primary tracking-tight" href="#">
+<img alt="MediCare Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1VKakpbVVOLgppiF8xPc6HdMLuv0ZzgW0IAZQK8qGS5OU8MOA5NLHP5SxelbRPh2k1bhx_Jefl-2FXXO0vjAqtVyBWmxHtVNT4q6m-R6BwToXdLXr9QNj-CP1RTQv5ezdeNb-_U8FwyrGClkjJs8a-UhgWKQXo_vlfT-ZTckkJXErbP_yugwmRPjlkGWW3Fzu0Mko7ZKK30xDoXlI-vKTv4epg-AnrSNZbAEvum8Q"/>
+<span class="sr-only">MediCare</span>
+</a>
+<!-- Desktop Navigation Links -->
+<nav class="hidden md:flex items-center space-x-8">
+<a class="text-on-surface-variant hover:text-primary dark:hover:text-inverse-primary font-body-md pb-1 transition-colors duration-150" href="#doctors">Doctors</a>
+<a class="text-on-surface-variant hover:text-primary dark:hover:text-inverse-primary font-body-md pb-1 transition-colors duration-150" href="#specialties">Specialties</a>
+<a class="text-on-surface-variant hover:text-primary dark:hover:text-inverse-primary font-body-md pb-1 transition-colors duration-150" href="#clinic-info">Contact</a>
+</nav>
+<!-- Trailing Action Cluster -->
+<div class="flex items-center gap-space-md">
+<a class="text-on-surface-variant hover:text-primary font-title-sm text-title-sm px-3 py-2 rounded-xl transition-colors duration-150" href="#login">Login</a>
+<a class="bg-primary-container hover:bg-primary text-on-primary font-title-sm text-title-sm px-4 py-2 rounded-xl transition-all duration-150 shadow-sm active:scale-95 inline-flex items-center gap-1.5" href="#book">
+<span class="material-symbols-outlined text-[18px]">calendar_today</span>
+          Book appointment
+        </a>
+</div>
+</div>
+</header>
+<main class="flex-grow">
+<!-- 2. Hero Section -->
+<section class="relative pt-12 pb-20 md:pt-20 md:pb-28 bg-gradient-to-b from-surface-container-low/60 via-background to-background overflow-hidden">
+<!-- Subtle Decorative Clinical Glow -->
+<div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-96 bg-gradient-to-tr from-primary-fixed/20 via-transparent to-secondary-fixed/20 blur-3xl pointer-events-none -z-10"></div>
+<div class="max-w-7xl mx-auto px-margin text-center">
+<!-- Badge Tagline -->
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container-lowest border border-outline-variant/40 mb-6 shadow-sm">
+<span class="w-2 h-2 rounded-full bg-primary-container animate-pulse"></span>
+<span class="text-label-md font-label-md text-on-surface-variant tracking-wide">Trusted Clinical Outpatient Network</span>
+</div>
+<!-- Headline & Subtitle -->
+<h1 class="text-display font-display text-on-surface tracking-tight max-w-3xl mx-auto mb-4">
+          Your health, our priority
+        </h1>
+<p class="text-body-lg font-body-lg text-on-surface-variant max-w-2xl mx-auto mb-10">
+          Book your appointment with the best doctors in a minute
+        </p>
+<!-- Search Bar Component -->
+<div class="max-w-2xl mx-auto mb-10">
+<form class="bg-surface-container-lowest p-2 rounded-xl border border-outline-variant/60 custom-shadow-card flex items-center gap-2 focus-within:ring-2 focus-within:ring-primary-container/20 focus-within:border-primary-container transition-all">
+<div class="flex items-center pl-3 pr-2 text-outline">
+<span class="material-symbols-outlined text-outline">search</span>
+</div>
+<input class="w-full bg-transparent border-0 focus:ring-0 text-on-surface placeholder:text-outline text-body-md font-body-md px-1 py-2 focus:outline-none" placeholder="Search for a doctor or specialty" type="text"/>
+<button class="bg-primary-container hover:bg-primary text-on-primary font-title-sm text-title-sm px-6 py-2.5 rounded-xl transition-all duration-150 whitespace-nowrap active:scale-95 shadow-sm flex items-center gap-1.5" type="submit">
+<span>Book</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</form>
+</div>
+<!-- Quick Facts Row -->
+<div class="flex flex-wrap items-center justify-center gap-4 md:gap-8 pt-2">
+<!-- Stat 1 -->
+<div class="flex items-center gap-2.5 px-4 py-2 bg-surface-container-lowest/80 border border-outline-variant/40 rounded-xl custom-shadow-card backdrop-blur-sm">
+<div class="w-8 h-8 rounded-full bg-surface-container-low text-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">medical_services</span>
+</div>
+<span class="text-title-sm font-title-sm text-on-surface">12 doctors</span>
+</div>
+<!-- Stat 2 -->
+<div class="flex items-center gap-2.5 px-4 py-2 bg-surface-container-lowest/80 border border-outline-variant/40 rounded-xl custom-shadow-card backdrop-blur-sm">
+<div class="w-8 h-8 rounded-full bg-surface-container-low text-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">category</span>
+</div>
+<span class="text-title-sm font-title-sm text-on-surface">8 specialties</span>
+</div>
+<!-- Stat 3 -->
+<div class="flex items-center gap-2.5 px-4 py-2 bg-surface-container-lowest/80 border border-outline-variant/40 rounded-xl custom-shadow-card backdrop-blur-sm">
+<div class="w-8 h-8 rounded-full bg-surface-container-low text-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">schedule</span>
+</div>
+<span class="text-title-sm font-title-sm text-on-surface">Open 8am – 8pm</span>
+</div>
+</div>
+</div>
+</section>
+<!-- 3. Specialties Section -->
+<section class="py-space-xl bg-surface-container-lowest border-y border-outline-variant/30" id="specialties">
+<div class="max-w-7xl mx-auto px-margin">
+<!-- Section Header -->
+<div class="max-w-2xl mb-12">
+<span class="text-label-md font-label-md text-primary-container uppercase tracking-wider block mb-1">Departments</span>
+<h2 class="text-headline-lg font-headline-lg text-on-surface tracking-tight mb-2">Specialties</h2>
+<p class="text-body-md font-body-md text-on-surface-variant">
+            Comprehensive outpatient care across clinical fields designed for rapid diagnosis and holistic patient recovery.
+          </p>
+</div>
+<!-- 6 Clickable Cards Bento/Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Specialty 1: Cardiology -->
+<a class="group p-6 bg-surface-bright rounded-xl border border-outline-variant/40 custom-shadow-card custom-shadow-hover flex flex-col justify-between h-48 block" href="#book">
+<div class="flex items-center justify-between">
+<div class="w-12 h-12 rounded-xl bg-surface-container-low group-hover:bg-primary-container group-hover:text-on-primary text-primary-container flex items-center justify-center transition-colors">
+<span class="material-symbols-outlined text-[24px]">cardiology</span>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors text-[20px]">north_east</span>
+</div>
+<div>
+<h3 class="text-headline-sm font-headline-sm text-on-surface mb-1 group-hover:text-primary transition-colors">Cardiology</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Preventative care, echocardiograms, and hypertension management.</p>
+</div>
+</a>
+<!-- Specialty 2: Dermatology -->
+<a class="group p-6 bg-surface-bright rounded-xl border border-outline-variant/40 custom-shadow-card custom-shadow-hover flex flex-col justify-between h-48 block" href="#book">
+<div class="flex items-center justify-between">
+<div class="w-12 h-12 rounded-xl bg-surface-container-low group-hover:bg-primary-container group-hover:text-on-primary text-primary-container flex items-center justify-center transition-colors">
+<span class="material-symbols-outlined text-[24px]">auto_awesome</span>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors text-[20px]">north_east</span>
+</div>
+<div>
+<h3 class="text-headline-sm font-headline-sm text-on-surface mb-1 group-hover:text-primary transition-colors">Dermatology</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Skin consultations, dermoscopy, allergy, and therapeutic solutions.</p>
+</div>
+</a>
+<!-- Specialty 3: Pediatrics -->
+<a class="group p-6 bg-surface-bright rounded-xl border border-outline-variant/40 custom-shadow-card custom-shadow-hover flex flex-col justify-between h-48 block" href="#book">
+<div class="flex items-center justify-between">
+<div class="w-12 h-12 rounded-xl bg-surface-container-low group-hover:bg-primary-container group-hover:text-on-primary text-primary-container flex items-center justify-center transition-colors">
+<span class="material-symbols-outlined text-[24px]">child_care</span>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors text-[20px]">north_east</span>
+</div>
+<div>
+<h3 class="text-headline-sm font-headline-sm text-on-surface mb-1 group-hover:text-primary transition-colors">Pediatrics</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Gentle pediatric checks, developmental tracking, and vaccination programs.</p>
+</div>
+</a>
+<!-- Specialty 4: Dentistry -->
+<a class="group p-6 bg-surface-bright rounded-xl border border-outline-variant/40 custom-shadow-card custom-shadow-hover flex flex-col justify-between h-48 block" href="#book">
+<div class="flex items-center justify-between">
+<div class="w-12 h-12 rounded-xl bg-surface-container-low group-hover:bg-primary-container group-hover:text-on-primary text-primary-container flex items-center justify-center transition-colors">
+<span class="material-symbols-outlined text-[24px]">dentistry</span>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors text-[20px]">north_east</span>
+</div>
+<div>
+<h3 class="text-headline-sm font-headline-sm text-on-surface mb-1 group-hover:text-primary transition-colors">Dentistry</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Preventive hygiene, restorative treatments, and digital oral scans.</p>
+</div>
+</a>
+<!-- Specialty 5: Orthopedics -->
+<a class="group p-6 bg-surface-bright rounded-xl border border-outline-variant/40 custom-shadow-card custom-shadow-hover flex flex-col justify-between h-48 block" href="#book">
+<div class="flex items-center justify-between">
+<div class="w-12 h-12 rounded-xl bg-surface-container-low group-hover:bg-primary-container group-hover:text-on-primary text-primary-container flex items-center justify-center transition-colors">
+<span class="material-symbols-outlined text-[24px]">accessibility_new</span>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors text-[20px]">north_east</span>
+</div>
+<div>
+<h3 class="text-headline-sm font-headline-sm text-on-surface mb-1 group-hover:text-primary transition-colors">Orthopedics</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Joint diagnostics, sports recovery therapy, and bone health checks.</p>
+</div>
+</a>
+<!-- Specialty 6: General Medicine -->
+<a class="group p-6 bg-surface-bright rounded-xl border border-outline-variant/40 custom-shadow-card custom-shadow-hover flex flex-col justify-between h-48 block" href="#book">
+<div class="flex items-center justify-between">
+<div class="w-12 h-12 rounded-xl bg-surface-container-low group-hover:bg-primary-container group-hover:text-on-primary text-primary-container flex items-center justify-center transition-colors">
+<span class="material-symbols-outlined text-[24px]">stethoscope</span>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors text-[20px]">north_east</span>
+</div>
+<div>
+<h3 class="text-headline-sm font-headline-sm text-on-surface mb-1 group-hover:text-primary transition-colors">General Medicine</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Primary health assessments, ongoing medication, and holistic diagnostics.</p>
+</div>
+</a>
+</div>
+</div>
+</section>
+<!-- 4. Our Doctors Section -->
+<section class="py-space-xl bg-background" id="doctors">
+<div class="max-w-7xl mx-auto px-margin">
+<!-- Section Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+<div>
+<span class="text-label-md font-label-md text-primary-container uppercase tracking-wider block mb-1">Medical Staff</span>
+<h2 class="text-headline-lg font-headline-lg text-on-surface tracking-tight mb-2">Our doctors</h2>
+<p class="text-body-md font-body-md text-on-surface-variant max-w-xl">
+              Board-certified practitioners devoted to precision healthcare and empathetic clinical consultations.
+            </p>
+</div>
+<div class="mt-4 md:mt-0">
+<span class="text-label-md font-label-md text-on-surface-variant bg-surface-container-high px-3 py-1.5 rounded-full inline-flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-primary-container">verified</span>
+              100% Board Certified
+            </span>
+</div>
+</div>
+<!-- 4-Column Responsive Doctor Cards -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Card 1: Dr. Sarah Jenkins -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant/40 overflow-hidden custom-shadow-card custom-shadow-hover flex flex-col">
+<div class="aspect-square w-full overflow-hidden bg-surface-container relative">
+<img alt="Dr. Sarah Jenkins" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCA-8z_CqPiRS1JaHbZ0KbYIH2hGtPx_b0gmCGcSDphe1zyk-BqXl81Oyvf270SHtHr4Taj3zIbYTqgNY_QhpH7U_BQ8oxoscT5D1HcpgtkaXvpCk1qDa3_9QZjF5e8YvMzMIqQfSPAzAS2DHQIcksCvgdL0vUMh5N0yjDykp4zHG-QJb7Gs5Qe9pZvZIDSVC8aqzs4FvLIBGUs3Uq9_lXVa9UrXa9Qms6zvEkO1Q"/>
+<div class="absolute top-3 left-3 bg-surface-container-lowest/90 backdrop-blur-sm px-2.5 py-1 rounded-full text-label-sm font-label-sm text-primary font-medium flex items-center gap-1 shadow-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span>
+                Cardiology
+              </div>
+</div>
+<div class="p-5 flex flex-col flex-grow justify-between">
+<div>
+<h3 class="text-title-md font-title-md text-on-surface">Dr. Sarah Jenkins</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant mb-4">Senior Consultant Cardiologist</p>
+<div class="mb-5 inline-flex items-center gap-1.5 px-2.5 py-1 bg-surface-container-low text-secondary rounded-full border border-secondary-fixed text-label-sm font-label-sm w-full">
+<span class="material-symbols-outlined text-[14px]">event_available</span>
+<span class="truncate">Next available: Tomorrow 10:30</span>
+</div>
+</div>
+<button class="w-full bg-primary-container hover:bg-primary text-on-primary font-title-sm text-title-sm py-2 rounded-xl transition-all shadow-sm active:scale-95 flex items-center justify-center gap-1">
+<span>Book</span>
+</button>
+</div>
+</div>
+<!-- Card 2: Dr. Michael Connell -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant/40 overflow-hidden custom-shadow-card custom-shadow-hover flex flex-col">
+<div class="aspect-square w-full overflow-hidden bg-surface-container relative">
+<img alt="Dr. Michael Connell" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4RnxBvGoTCXE3t1bbsVmxanmU2iNavXbJNxXeYPlOYQJl8vEY1FP7RWCh5i-Smz2ikOiY1rrzK3xkfqvxcO96979V_r_hmATTcivzTwKyiqyAvb7rUsgEjG4aJfvJ23Q53ZQUY7_VoameZq0jyTESCGYY0PtekZUvZEBBnNLMqqIkO3dqzYSQM2wZJ-mM32EB-CNhQ4VTG1pQCCJg2MnFKVidSKbvW1IoTjU1sg"/>
+<div class="absolute top-3 left-3 bg-surface-container-lowest/90 backdrop-blur-sm px-2.5 py-1 rounded-full text-label-sm font-label-sm text-primary font-medium flex items-center gap-1 shadow-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span>
+                Pediatrics
+              </div>
+</div>
+<div class="p-5 flex flex-col flex-grow justify-between">
+<div>
+<h3 class="text-title-md font-title-md text-on-surface">Dr. Michael Connell</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant mb-4">Lead Pediatric Specialist</p>
+<div class="mb-5 inline-flex items-center gap-1.5 px-2.5 py-1 bg-surface-container-low text-secondary rounded-full border border-secondary-fixed text-label-sm font-label-sm w-full">
+<span class="material-symbols-outlined text-[14px]">event_available</span>
+<span class="truncate">Next available: Tomorrow 10:30</span>
+</div>
+</div>
+<button class="w-full bg-primary-container hover:bg-primary text-on-primary font-title-sm text-title-sm py-2 rounded-xl transition-all shadow-sm active:scale-95 flex items-center justify-center gap-1">
+<span>Book</span>
+</button>
+</div>
+</div>
+<!-- Card 3: Dr. Elena Vance -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant/40 overflow-hidden custom-shadow-card custom-shadow-hover flex flex-col">
+<div class="aspect-square w-full overflow-hidden bg-surface-container relative">
+<img alt="Dr. Elena Vance" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDBtO-Wuhk8Jh9GLfUQDBRMzfGVUEZjKGWJJLRbawCYqxEGujkgfoyjPUt41afyjS5qLwoJvEnEGFPGfofArP2D5nekPWEOG5WpnctHUW_HOnj3HzKk1iz9NeQ_5cn1Kj567JNj07wXxZpobvk-zIA1vzxsMJy0J9jeLzLk9YHnTLKQi7CzERtoqbByKlNAEaTgA-nkuXNxFOuaKPlggZqL9XSWqTc36ceDnlzH-Q"/>
+<div class="absolute top-3 left-3 bg-surface-container-lowest/90 backdrop-blur-sm px-2.5 py-1 rounded-full text-label-sm font-label-sm text-primary font-medium flex items-center gap-1 shadow-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span>
+                Dermatology
+              </div>
+</div>
+<div class="p-5 flex flex-col flex-grow justify-between">
+<div>
+<h3 class="text-title-md font-title-md text-on-surface">Dr. Elena Vance</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant mb-4">Clinical Dermatologist</p>
+<div class="mb-5 inline-flex items-center gap-1.5 px-2.5 py-1 bg-surface-container-low text-secondary rounded-full border border-secondary-fixed text-label-sm font-label-sm w-full">
+<span class="material-symbols-outlined text-[14px]">event_available</span>
+<span class="truncate">Next available: Tomorrow 10:30</span>
+</div>
+</div>
+<button class="w-full bg-primary-container hover:bg-primary text-on-primary font-title-sm text-title-sm py-2 rounded-xl transition-all shadow-sm active:scale-95 flex items-center justify-center gap-1">
+<span>Book</span>
+</button>
+</div>
+</div>
+<!-- Card 4: Dr. Rohan Patel -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant/40 overflow-hidden custom-shadow-card custom-shadow-hover flex flex-col">
+<div class="aspect-square w-full overflow-hidden bg-surface-container relative">
+<img alt="Dr. Rohan Patel" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCs_VbMsa-p1FJ9JoaCqor3k-anzEOVcdbH2nN9Q4Q_Z05fBNkqNdcfinMlpijmTWeGcnNOy3XtSjlmVQcgG0eFeMOpGV14XZBYJ2uTq93gW7GRcipu0ypiQAIRducQhQ4G4BExCFTUK9kE3Yozk7ZE_xoj6fgl2dUeuSHZoDX3EX0eN6ZpTS0opF1rtJn3bALVnoeG1IO8a5Z3BFTPOH-kASV_h_lYSdvyF4G3LA"/>
+<div class="absolute top-3 left-3 bg-surface-container-lowest/90 backdrop-blur-sm px-2.5 py-1 rounded-full text-label-sm font-label-sm text-primary font-medium flex items-center gap-1 shadow-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span>
+                Orthopedics
+              </div>
+</div>
+<div class="p-5 flex flex-col flex-grow justify-between">
+<div>
+<h3 class="text-title-md font-title-md text-on-surface">Dr. Rohan Patel</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant mb-4">Orthopedic Surgeon &amp; Sports Physio</p>
+<div class="mb-5 inline-flex items-center gap-1.5 px-2.5 py-1 bg-surface-container-low text-secondary rounded-full border border-secondary-fixed text-label-sm font-label-sm w-full">
+<span class="material-symbols-outlined text-[14px]">event_available</span>
+<span class="truncate">Next available: Tomorrow 10:30</span>
+</div>
+</div>
+<button class="w-full bg-primary-container hover:bg-primary text-on-primary font-title-sm text-title-sm py-2 rounded-xl transition-all shadow-sm active:scale-95 flex items-center justify-center gap-1">
+<span>Book</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Under Cards: See All Doctors Link -->
+<div class="mt-12 text-center">
+<a class="inline-flex items-center gap-2 text-primary font-title-md text-title-md hover:underline underline-offset-4 transition-colors" href="#">
+<span>See all doctors</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</a>
+</div>
+</div>
+</section>
+<!-- 5. How It Works Section -->
+<section class="py-space-xl bg-surface-container-low/50 border-t border-outline-variant/30">
+<div class="max-w-7xl mx-auto px-margin">
+<div class="text-center max-w-xl mx-auto mb-16">
+<span class="text-label-md font-label-md text-primary-container uppercase tracking-wider block mb-1">Simple Booking</span>
+<h2 class="text-headline-lg font-headline-lg text-on-surface tracking-tight mb-2">How it works</h2>
+<p class="text-body-md font-body-md text-on-surface-variant">
+            Streamlined three-step process to secure professional clinical appointments with immediate digital confirmation.
+          </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+<!-- Step 1 -->
+<div class="bg-surface-container-lowest p-8 rounded-xl border border-outline-variant/40 custom-shadow-card flex flex-col items-center text-center">
+<div class="w-14 h-14 rounded-full bg-surface-container-low border-2 border-primary-fixed text-primary-container flex items-center justify-center mb-6 text-headline-sm font-headline-sm">
+              1
+            </div>
+<div class="w-10 h-10 rounded-full bg-surface-bright flex items-center justify-center text-primary-container mb-3">
+<span class="material-symbols-outlined">person_search</span>
+</div>
+<h3 class="text-headline-sm font-headline-sm text-on-surface mb-2">Choose a doctor</h3>
+<p class="text-body-md font-body-md text-on-surface-variant">
+              Select specialty and trusted physician based on patient reviews and clinical specializations.
+            </p>
+</div>
+<!-- Step 2 -->
+<div class="bg-surface-container-lowest p-8 rounded-xl border border-outline-variant/40 custom-shadow-card flex flex-col items-center text-center">
+<div class="w-14 h-14 rounded-full bg-surface-container-low border-2 border-primary-fixed text-primary-container flex items-center justify-center mb-6 text-headline-sm font-headline-sm">
+              2
+            </div>
+<div class="w-10 h-10 rounded-full bg-surface-bright flex items-center justify-center text-primary-container mb-3">
+<span class="material-symbols-outlined">edit_calendar</span>
+</div>
+<h3 class="text-headline-sm font-headline-sm text-on-surface mb-2">Pick a time</h3>
+<p class="text-body-md font-body-md text-on-surface-variant">
+              Choose an appointment slot that fits your schedule with instant real-time calendar synchronization.
+            </p>
+</div>
+<!-- Step 3 -->
+<div class="bg-surface-container-lowest p-8 rounded-xl border border-outline-variant/40 custom-shadow-card flex flex-col items-center text-center">
+<div class="w-14 h-14 rounded-full bg-surface-container-low border-2 border-primary-fixed text-primary-container flex items-center justify-center mb-6 text-headline-sm font-headline-sm">
+              3
+            </div>
+<div class="w-10 h-10 rounded-full bg-surface-bright flex items-center justify-center text-primary-container mb-3">
+<span class="material-symbols-outlined">apartment</span>
+</div>
+<h3 class="text-headline-sm font-headline-sm text-on-surface mb-2">Visit us</h3>
+<p class="text-body-md font-body-md text-on-surface-variant">
+              Receive confirmation, calendar reminders, and visit our modern clinic for attentive consultation.
+            </p>
+</div>
+</div>
+</div>
+</section>
+<!-- 6. Clinic Info Section & Emergency Notice -->
+<section class="py-space-xl bg-surface-container-lowest border-t border-outline-variant/30" id="clinic-info">
+<div class="max-w-7xl mx-auto px-margin">
+<!-- Emergency Alert Banner -->
+<div class="mb-12 bg-error-container/40 border border-error/30 rounded-xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-sm">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-error text-on-error flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[24px]">emergency</span>
+</div>
+<div>
+<span class="text-label-md font-label-md uppercase tracking-wider text-error block">Urgent Clinical Triage</span>
+<p class="text-headline-sm font-headline-sm text-on-surface">For emergencies, call <span class="text-error font-bold">140</span> immediately.</p>
+</div>
+</div>
+<a class="shrink-0 bg-error hover:bg-error/90 text-on-error font-title-sm text-title-sm px-6 py-2.5 rounded-xl transition-all active:scale-95 flex items-center gap-2" href="tel:140">
+<span class="material-symbols-outlined text-[18px]">call</span>
+<span>Emergency Call</span>
+</a>
+</div>
+<!-- Info Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Hours -->
+<div class="p-6 rounded-xl border border-outline-variant/40 bg-surface-bright custom-shadow-card flex items-start gap-4">
+<div class="w-10 h-10 rounded-xl bg-surface-container-low text-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined">schedule</span>
+</div>
+<div>
+<h4 class="text-title-md font-title-md text-on-surface mb-1">Working hours</h4>
+<p class="text-body-md font-body-md text-on-surface-variant font-medium">Monday – Sunday</p>
+<p class="text-body-sm font-body-sm text-on-surface-variant">8:00 AM – 8:00 PM</p>
+</div>
+</div>
+<!-- Address -->
+<div class="p-6 rounded-xl border border-outline-variant/40 bg-surface-bright custom-shadow-card flex items-start gap-4">
+<div class="w-10 h-10 rounded-xl bg-surface-container-low text-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined">location_on</span>
+</div>
+<div>
+<h4 class="text-title-md font-title-md text-on-surface mb-1">Clinic Address</h4>
+<p class="text-body-md font-body-md text-on-surface-variant">742 Evergreen Medical Plaza</p>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Suite 300, Metro City</p>
+</div>
+</div>
+<!-- Phone -->
+<div class="p-6 rounded-xl border border-outline-variant/40 bg-surface-bright custom-shadow-card flex items-start gap-4">
+<div class="w-10 h-10 rounded-xl bg-surface-container-low text-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined">call</span>
+</div>
+<div>
+<h4 class="text-title-md font-title-md text-on-surface mb-1">Phone number</h4>
+<p class="text-body-md font-body-md text-on-surface-variant font-semibold text-primary">+1 (555) 234-5678</p>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Dedicated scheduling line</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- 7. Footer -->
+<footer class="bg-surface-container-low dark:bg-inverse-surface border-t border-outline-variant/30 dark:border-outline/20">
+<div class="max-w-7xl mx-auto px-margin py-space-xl flex flex-col md:flex-row justify-between items-center gap-space-md w-full">
+<!-- Brand & Copy -->
+<div class="flex flex-col sm:flex-row items-center gap-4 text-center sm:text-left">
+<a class="text-title-md font-title-md text-primary dark:text-inverse-primary tracking-tight" href="#">
+<img alt="MediCare Logo" class="h-6 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1VKakpbVVOLgppiF8xPc6HdMLuv0ZzgW0IAZQK8qGS5OU8MOA5NLHP5SxelbRPh2k1bhx_Jefl-2FXXO0vjAqtVyBWmxHtVNT4q6m-R6BwToXdLXr9QNj-CP1RTQv5ezdeNb-_U8FwyrGClkjJs8a-UhgWKQXo_vlfT-ZTckkJXErbP_yugwmRPjlkGWW3Fzu0Mko7ZKK30xDoXlI-vKTv4epg-AnrSNZbAEvum8Q"/>
+</a>
+<span class="hidden sm:inline text-outline-variant">|</span>
+<p class="text-on-surface-variant dark:text-outline-variant font-body-sm text-body-sm">
+          © 2024 MediCare Clinic Network. All rights reserved. Precise clinical care and booking.
+        </p>
+</div>
+<!-- Footer Navigation Links -->
+<div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
+<a class="text-on-surface-variant dark:text-outline-variant font-body-sm text-body-sm hover:text-primary dark:hover:text-inverse-primary underline-offset-4 hover:underline transition-colors" href="#doctors">Doctors</a>
+<a class="text-on-surface-variant dark:text-outline-variant font-body-sm text-body-sm hover:text-primary dark:hover:text-inverse-primary underline-offset-4 hover:underline transition-colors" href="#specialties">Specialties</a>
+<a class="text-on-surface-variant dark:text-outline-variant font-body-sm text-body-sm hover:text-primary dark:hover:text-inverse-primary underline-offset-4 hover:underline transition-colors" href="#clinic-info">Contact</a>
+<a class="text-on-surface-variant dark:text-outline-variant font-body-sm text-body-sm hover:text-primary dark:hover:text-inverse-primary underline-offset-4 hover:underline transition-colors" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant dark:text-outline-variant font-body-sm text-body-sm hover:text-primary dark:hover:text-inverse-primary underline-offset-4 hover:underline transition-colors" href="#">Terms of Service</a>
+</div>
+</div>
+</footer>
+</body></html>

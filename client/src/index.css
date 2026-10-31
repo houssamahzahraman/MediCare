@@ -1,10 +1,15 @@
 @import "tailwindcss";
 
 @theme {
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+
   --color-primary-50: #f0fdfa;
   --color-primary-100: #ccfbf1;
   --color-primary-500: #14b8a6;
   --color-primary-600: #0d9488;
   --color-primary-700: #0f766e;
   --color-primary-800: #115e59;
+
+  --shadow-card: 0 1px 3px 0 rgb(15 118 110 / 0.04), 0 1px 2px -1px rgb(0 0 0 / 0.05);
+  --shadow-card-hover: 0 4px 6px -1px rgb(15 118 110 / 0.07), 0 2px 4px -2px rgb(0 0 0 / 0.05);
 }
