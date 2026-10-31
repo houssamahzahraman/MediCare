@@ -19,6 +19,7 @@ Read this whole file before doing anything. It describes the project, what is al
 ## 2. STRICT RULES (non-negotiable)
 
 ### 2.1 Scope — do only what is asked
+
 - Do **exactly** the task Houssam gives you. Nothing more.
 - Do **not** refactor, rename, reformat, "improve", or clean up code he didn't ask about.
 - Do **not** create extra files, folders, tests, docs, or configs unless the task needs them.
@@ -26,8 +27,10 @@ Read this whole file before doing anything. It describes the project, what is al
 - If you notice a bug or an improvement outside the task, **mention it in one line** at the end and let him decide. Do not fix it.
 - If the task is unclear, **ask** before writing code.
 - Before editing, tell him which files you will touch.
+- When you create the first real file inside a folder that contains a `.gitkeep`, delete that `.gitkeep` in the same step.
 
 ### 2.2 Git — read only, NEVER write
+
 Houssam does **all** git write operations himself, because he is learning the workflow.
 
 - ✅ Allowed: `git status`, `git diff`, `git log`, `git branch` (listing only), `git show`.
@@ -35,11 +38,13 @@ Houssam does **all** git write operations himself, because he is learning the wo
 - Instead, when a step is finished, **suggest** the exact commands for him to run, with a commit message following our convention (section 6).
 
 ### 2.3 Secrets
+
 - Never read, print, or edit `.env` files. Use `.env.example` to know which variables exist.
 - If a new environment variable is needed, add it to `.env.example` with a placeholder value and tell Houssam to add the real value to his `.env`.
 - Never hardcode secrets, passwords, or connection strings in code.
 
 ### 2.4 Commands
+
 - Do not run long-lived commands (`npm run dev`, `docker compose up` without `-d`) and block. Tell Houssam to run them.
 - Ask before running anything destructive (deleting files, `docker compose down -v`, etc.).
 
@@ -50,17 +55,19 @@ Houssam does **all** git write operations himself, because he is learning the wo
 **MediCare** is a management system for a (multi-branch) medical center, built with the **MERN stack + TypeScript**.
 
 ### Roles
-| Role | What they do |
-|---|---|
-| **Patient** | Registers alone. Books appointments, sees own appointments, prescriptions, lab results, invoices |
-| **Receptionist** | Registers walk-in patients, manages appointments, check-in, manages the queue |
-| **Doctor** | Sees own queue, opens patient file, writes diagnosis & prescription, reviews lab results |
-| **Accountant** | Invoices, payments, financial reports |
-| **Admin** | Staff, doctors, specialties, services & prices, analytics, audit log |
+
+| Role             | What they do                                                                                     |
+| ---------------- | ------------------------------------------------------------------------------------------------ |
+| **Patient**      | Registers alone. Books appointments, sees own appointments, prescriptions, lab results, invoices |
+| **Receptionist** | Registers walk-in patients, manages appointments, check-in, manages the queue                    |
+| **Doctor**       | Sees own queue, opens patient file, writes diagnosis & prescription, reviews lab results         |
+| **Accountant**   | Invoices, payments, financial reports                                                            |
+| **Admin**        | Staff, doctors, specialties, services & prices, analytics, audit log                             |
 
 Staff **never self-register**: the Admin sends an email invitation. Only patients can register.
 
 ### Main flows
+
 1. **Online booking:** specialty → doctor → day → free slot → confirm. Must prevent double booking (unique index + transaction).
 2. **Visit day:** check-in (receptionist) → waiting in queue (live screen) → doctor calls next → doctor writes diagnosis/prescription → completes visit → invoice generated → payment recorded.
 3. **Lab results:** doctor orders → file uploaded → doctor reviews → patient notified.
@@ -68,20 +75,25 @@ Staff **never self-register**: the Admin sends an email invitation. Only patient
 5. **Cancel / reschedule:** allowed until 24h before; slot freed; reminder cancelled.
 
 ### Appointment state machine
+
 ```
 SCHEDULED → CHECKED_IN → IN_PROGRESS → COMPLETED
     ↓            ↓
 CANCELLED     NO_SHOW
 ```
+
 Status changes happen through **action endpoints** (`POST /appointments/:id/cancel`), never by editing `status` directly.
 
 ### Planned architecture
+
 ```
 React client → Nginx → Express API (modular monolith) → MongoDB / File storage / Redis → Worker (BullMQ jobs)
 ```
+
 Built gradually; Nginx, Worker and file storage come later.
 
 ### Database (MongoDB) — main collections
+
 - `users` (identity: email, passwordHash, role, status) — separate from profiles
 - `patients` (profile; `userId` optional, for walk-ins without account; embedded `allergies`)
 - `doctors` (`userId`, `specialtyId`, embedded `workingHours`)
@@ -95,6 +107,7 @@ Built gradually; Nginx, Worker and file storage come later.
 Rule: **embed** data that belongs to the parent, is small and read together; **reference** independent or unbounded data.
 
 ### API
+
 - Base: `/api/v1`. REST, plural nouns, kebab-case. `/me/...` for the patient's own data (prevents IDOR).
 - Response shape: `{ "data": ... }`, lists add `{ "meta": { "nextCursor", "hasMore" } }`, errors `{ "error": { "code", "message", "details" } }`.
 - Cursor pagination, Zod validation, RBAC on every protected route, audit log on medical data access, `Idempotency-Key` on payments.
@@ -106,6 +119,7 @@ Rule: **embed** data that belongs to the parent, is small and read together; **r
 ## 4. Current state
 
 ### Done
+
 - GitHub repo with protected `main` (PR required, no force push)
 - `.gitignore`, `.gitattributes` (LF everywhere), `README.md`, `.vscode/settings.json` (format on save with Prettier)
 - **Server** (`server/`): Express 5 + TypeScript 7 (strict), `tsx watch`, Prettier, `.env` loaded with Node's `--env-file`, a single `GET /health` route in `src/server.ts` (temporary — will be split into layers)
@@ -115,6 +129,7 @@ Rule: **embed** data that belongs to the parent, is small and read together; **r
 Run `git status` and `git log --oneline -10` to confirm the exact current state and branch before starting.
 
 ### Next (Houssam decides the order)
+
 1. Connect client to server (`/health`), CORS / Vite proxy
 2. Server: split `server.ts` into `app.ts` / `server.ts`, env validation with Zod, logger, central error handling
 3. Connect server to MongoDB (Mongoose) and Redis
