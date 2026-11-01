@@ -3,8 +3,6 @@ import { DoctorsSection } from "../../components/home/DoctorsSection";
 import { HeroSection } from "../../components/home/HeroSection";
 import { HowItWorksSection } from "../../components/home/HowItWorksSection";
 import { SpecialtiesSection } from "../../components/home/SpecialtiesSection";
-import { PublicFooter } from "../../components/layout/PublicFooter";
-import { PublicHeader } from "../../components/layout/PublicHeader";
 import type { Doctor } from "../../types/doctor";
 import type { Specialty } from "../../types/specialty";
 
@@ -80,16 +78,12 @@ const DOCTORS: Doctor[] = [
 
 export function HomePage() {
   return (
-    <div className="flex min-h-screen flex-col bg-slate-50 text-gray-800 antialiased">
-      <PublicHeader />
-      <main className="grow">
-        <HeroSection />
-        <SpecialtiesSection specialties={SPECIALTIES} />
-        <DoctorsSection doctors={DOCTORS} />
-        <HowItWorksSection />
-        <ClinicInfoSection />
-      </main>
-      <PublicFooter />
-    </div>
+    <>
+      <HeroSection />
+      <SpecialtiesSection specialties={SPECIALTIES} />
+      <DoctorsSection doctors={DOCTORS} />
+      <HowItWorksSection />
+      <ClinicInfoSection />
+    </>
   );
 }

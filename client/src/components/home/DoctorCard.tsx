@@ -1,4 +1,5 @@
 import { CalendarCheck } from "lucide-react";
+import { Link } from "react-router";
 import type { Doctor } from "../../types/doctor";
 import { getInitials } from "../../utils/getInitials";
 import { Badge } from "../ui/Badge";
@@ -23,14 +24,18 @@ export function DoctorCard({ doctor }: DoctorCardProps) {
       </div>
 
       <div className="flex grow flex-col p-5">
-        <h3 className="font-semibold text-gray-800">{doctor.name}</h3>
+        <h3 className="font-semibold text-gray-800">
+          <Link to={`/doctors/${doctor.id}`} className="hover:text-primary-700 hover:underline">
+            {doctor.name}
+          </Link>
+        </h3>
         <p className="mb-4 text-xs text-gray-600">{doctor.title}</p>
         <div className="mb-5">
           <Badge tone="info" icon={CalendarCheck}>
             Next available: {doctor.nextAvailable}
           </Badge>
         </div>
-        <Button href="#" className="mt-auto w-full">
+        <Button to="/patient/book" className="mt-auto w-full">
           Book
         </Button>
       </div>

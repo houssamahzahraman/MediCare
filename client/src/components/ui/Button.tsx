@@ -1,10 +1,12 @@
 import type { ReactNode } from "react";
+import { Link } from "react-router";
 
 type ButtonVariant = "primary" | "danger";
 
 type ButtonProps = {
   children: ReactNode;
   variant?: ButtonVariant;
+  to?: string;
   href?: string;
   type?: "button" | "submit";
   className?: string;
@@ -21,11 +23,20 @@ const VARIANT_CLASSES: Record<ButtonVariant, string> = {
 export function Button({
   children,
   variant = "primary",
+  to,
   href,
   type = "button",
   className = "",
 }: ButtonProps) {
   const classes = `${BASE_CLASSES} ${VARIANT_CLASSES[variant]} ${className}`;
+
+  if (to) {
+    return (
+      <Link to={to} className={classes}>
+        {children}
+      </Link>
+    );
+  }
 
   if (href) {
     return (
