@@ -1,4 +1,5 @@
 import { ArrowRight, BadgeCheck } from "lucide-react";
+import { Link } from "react-router";
 import type { Doctor } from "../../types/doctor";
 import { Container } from "../layout/Container";
 import { Badge } from "../ui/Badge";
@@ -33,13 +34,13 @@ export function DoctorsSection({ doctors }: DoctorsSectionProps) {
         </div>
 
         <div className="mt-12 text-center">
-          <a
-            href="#"
+          <Link
+            to="/doctors"
             className="inline-flex items-center gap-2 font-semibold text-primary-700 underline-offset-4 hover:underline"
           >
             See all doctors
             <ArrowRight size={16} strokeWidth={1.5} aria-hidden="true" />
-          </a>
+          </Link>
         </div>
       </Container>
     </section>
